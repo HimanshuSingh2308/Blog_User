@@ -10,9 +10,16 @@
  		<div class="discription">
  			<p> <%- blog.body %> </p>
  		</div>
- 		<a  href="/blog/<%=blog._id%>/edit" class="ui orange large inverted button">Edit</a>
-		<form class="ui form" method="post" action="/blog/<%= blog._id %>?_method=DELETE">
-			<button class="ui red large inverted button">Delete</button>
+ 		 <!-- <a  href="/blog/<%=blog._id%>/edit" class="ui orange large inverted button">Edit</a> -->
+		<form class="ui form" method="post" action="/blog/<%=blog._id%>?_method=PUT">
+			<button  <% if(blog.like) {%>
+			class="ui blue large button"<%}else{%>
+				class="ui blue large inverted button"
+				<%}%>>
+				<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like <% if (blog.likes) {%>
+					(<%=blog.likes%>)
+				<%}%>
+				</button>
 		</form>
-	</div>
-<% include ../Metadata/header %>
+	</div> 
+<% include ../Metadata/footer %>
