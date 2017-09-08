@@ -1,0 +1,22 @@
+<% include ../Metadata/header %>
+	<div class="ui main text container segment">
+		<div class="ui huge header">Create New Blog</div>
+		<form class="ui form" action="/blog" method="POST">
+			<div class="field">
+				<lable>Title:</lable>
+				<input type="text" name="title" placeholder="Title">
+			</div>
+			<div class="field">
+				<lable>Image Url: </lable>
+				<input type="text" name="imageurl" placeholder="imageurl">
+			</div>
+			<div class="field">
+				<lable> Discription: </lable>
+				<textarea name="body" placeholder="Discribe"></textarea>
+			</div>
+			<div class="field">
+				<input class="ui blue basic big button"type="submit" value="C r e a t e">
+			</div>
+		</form> 
+	</div>
+<% include ../Metadata/footer %>

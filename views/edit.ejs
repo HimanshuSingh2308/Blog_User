@@ -1,0 +1,22 @@
+<% include ../Metadata/header %>
+	<div class="ui main text container segment">
+		<div class="ui huge header">Edit Blog</div>
+		<form class="ui form" action="/blog/<%= blog._id %>?_method=PUT" method="POST">
+			<div class="field">
+				<lable>Title:</lable>
+				<input type="text" name="blog[title]" placeholder="Title" value="<%=blog.title %>">
+			</div>
+			<div class="field">
+				<lable>Image Url: </lable>
+				<input type="text" name="blog[Image]" placeholder="imageurl" value="<%=blog.Image %>">
+			</div>
+			<div class="field">
+				<lable> Discription: </lable>
+				<textarea name="blog[body]" placeholder="Discribe" > <%= blog.body %> </textarea>
+			</div>
+			<div class="field">
+				<input class="ui blue basic big button"type="submit" value="U p d a t e">
+			</div>
+		</form> 
+	</div>
+<% include ../Metadata/footer %>

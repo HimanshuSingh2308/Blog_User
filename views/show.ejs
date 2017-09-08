@@ -1,0 +1,18 @@
+<% include ../Metadata/header %>
+	<div class="ui main text container segment">
+		<div class="ui huge header"> <%= blog.title %> </div>
+		<div class="ui centered rounded image segment">
+			<img src="<%= blog.Image %>">
+ 		</div>
+ 		<div class="content">
+ 			<span> <%= blog.date.toDateString() %>
+ 		</div>	
+ 		<div class="discription">
+ 			<p> <%- blog.body %> </p>
+ 		</div>
+ 		<a  href="/blog/<%=blog._id%>/edit" class="ui orange large inverted button">Edit</a>
+		<form class="ui form" method="post" action="/blog/<%= blog._id %>?_method=DELETE">
+			<button class="ui red large inverted button">Delete</button>
+		</form>
+	</div>
+<% include ../Metadata/header %>
