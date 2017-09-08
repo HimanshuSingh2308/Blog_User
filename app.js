@@ -119,8 +119,8 @@ app.put('/blog/:id',function(req,res){
 					if (error) 
 					{
 						console.log(error);
-					// }
-					// else{
+					}
+					else{
 							res.redirect("back");
 					}	
 				});
