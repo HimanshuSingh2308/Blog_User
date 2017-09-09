@@ -14,3 +14,60 @@ form{
 	box-shadow: 0 10px 10px rgba(0,0,0,0.5);
 	border-radius: 2%;
 }
+.profile{
+	background-image:url("http://1080wallpapershd.com/wp-content/uploads/2013/07/34_padlock_city_blur_hd_wallpaper.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
+	position:center;
+	margin: 0;
+	font-family: 'Indie Flower', cursive;
+	font-weight:bold;	
+	word-spacing: 25px;
+	letter-spacing: 2px;
+	padding-top: 200px;
+}
+.about{
+	display: inline;
+	word-wrap:break-word;
+}
+html,body{
+	height: 100%;
+	width: 100%;
+}
+h4{
+	word-spacing: 1.5rem;
+	line-height: 3rem;
+	text-align: center;
+}
+.profile1{
+	background-image:url("https://i.pinimg.com/originals/62/f9/9d/62f99d68cb6f2b9f8da790053b0b4c78.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
+	position:center;
+	margin: 0;
+	font-family: 'Indie Flower', cursive;
+	font-weight:bold;	
+	word-spacing: 25px;
+	letter-spacing: 2px;
+	padding-top: 200px;
+	height: 80%;
+	vertical-align: middle;
+}
+.profile1 h1
+{
+	font-family:'Indie Flower',cursive;
+	text-align: center;
+	color: white;
+	/*position: absolute;*/
+}
+.contact{
+	background-color:  #00C2FF;
+}
+.contact a{
+	color:white;
+}
+.contact a:hover{
+	color:black;
+}

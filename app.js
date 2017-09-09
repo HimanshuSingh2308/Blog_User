@@ -42,9 +42,9 @@ app.get('/blog',function(req,res){
 });
 
 
-// app.get('/blog/new',function(req,res){
-// 	res.render('newblog');
-// });
+app.get('/blog/profile',function(req,res){
+	res.render('profile');
+});
 
 
 app.post('/blog',function(req,res){
