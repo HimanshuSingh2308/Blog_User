@@ -9,8 +9,8 @@ app.use(body.urlencoded({extended:true}));
 app.use(expressSanitiz());
 app.use(express.static('files'));
 app.use(methodOverride("_method"));
-db.connect("mongodb://localhost/Blog");
-// db.connect("mongodb://username:password@ds159033.mlab.com:59033/blogs"); using mlabs database
+// db.connect("mongodb://localhost/Blog");
+db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs"); //using mlabs database
 
 var blogSchema=new db.Schema({
 	title:String,
@@ -20,6 +20,7 @@ var blogSchema=new db.Schema({
 	likes:{type:Number,default:0},
 	date:{type:Date,default:Date.now}
 });
+
 var blog=db.model('blog',blogSchema);
 
 

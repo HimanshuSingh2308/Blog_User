@@ -26,6 +26,8 @@ form{
 	word-spacing: 25px;
 	letter-spacing: 2px;
 	padding-top: 200px;
+	height: 80%;
+	vertical-align: middle;
 }
 .about{
 	display: inline;
