@@ -21,5 +21,30 @@
 				<%}%>
 				</button>
 		</form>
-	</div> 
+		
+	</div>
+	<div class="ui main text container segment well" style="margin-top:0;">
+		<h2 class="massive header" style="color:#0b61ea;">Your opinion <i class="fa fa-comment-o" aria-hidden="true"></i> </h2>
+		<div class="content">
+			<div class="discription">
+			<% if(blog.comments.length>0){ %> 
+					 <% blog.comments.forEach(function(comment){ %>
+					 	<div class="ui items">
+					 		<div class="field">
+							 	<p><strong ><%= comment["content"] %></strong><br> <%= comment["date"].toDateString() %> </p>
+							</div>
+						</div>	
+					 <% }) %>
+				<% } %>
+			</div>
+		</div><br>
+		<form class="ui form" action="/blog/<%= blog._id %>/comments" method="POST">
+			<div class="field">
+				<input type="text" name="comment" placeholder="Write Your opinion...">
+			</div>
+			<div class="field">
+				<input type="submit" value="Submit" class="ui blue inverted button">
+			</div>
+		</form> 
+	</div>
 <% include ../Metadata/footer %>

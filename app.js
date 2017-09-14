@@ -4,18 +4,24 @@ var express       =require('express');
 	methodOverride=require('method-override');
 	expressSanitiz=require('express-sanitizer');
     app           =express();
+    str=require('format-title'),
+    comment=require('./models/comments')
 app.set('view engine','ejs');
 app.use(body.urlencoded({extended:true}));
 app.use(expressSanitiz());
 app.use(express.static('files'));
 app.use(methodOverride("_method"));
-db.connect("mongodb://localhost/Blog");
-// db.connect("mongodb://username:password@ds159033.mlab.com:59033/blogs"); //using mlabs database
+// db.connect("mongodb://localhost/Blog");
+db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs");//using mlabs database
 
 var blogSchema=new db.Schema({
 	title:String,
 	Image:String,
 	body:String,
+	comments:[{
+		type:db.Schema.Types.ObjectId,
+		ref:"comment"
+	}],
 	like:{type:Boolean,default:false},
 	likes:{type:Number,default:0},
 	date:{type:Date,default:Date.now}
@@ -73,7 +79,7 @@ app.post('/blog',function(req,res){
 
 app.get('/blog/:id',function(req,res){
 		var id=req.params.id;
-		blog.findById(id,function(error,blog)
+		blog.findById(id).populate("comments").exec(function(error,blog)
 		{
 			if(error)
 			{
@@ -105,8 +111,7 @@ app.get('/blog/:id',function(req,res){
 
 app.put('/blog/:id',function(req,res){
 	var id=req.params.id;
-	// req.body.blog.body=req.sanitize(req.body.blog.body);
-	// console.log(req.body.blog.body);
+	req.body.blog.body=req.sanitize(req.body.blog.body);
 	blog.findById(id,function(error,blogs){
 			if (error) 
 			{
@@ -144,6 +149,47 @@ app.put('/blog/:id',function(req,res){
 // 			}
 // 		});
 // });
+
+app.post('/blog/:id/comments',function(req,res){
+	var id=req.params.id;
+	var content=str.capWords(req.body.comment);
+	comment.create(
+		{
+			content:content
+		},function(error,comment){
+			if (error) 
+			{
+				console.log(error);
+			}
+			else
+			{
+				blog.findById(id,function(error,posts)
+				{
+					if(error)
+					{
+						console.log(error);
+					}
+					else
+					{
+						posts.comments.push(comment);
+					    posts.save(function(error,content)
+				        {
+			                if(error)
+			                {
+			                    console.log(error);
+			                }
+			                else{
+			                	res.redirect(`/blog/${id}`);
+			                }
+			            });
+					}
+				});
+			}
+	});
+});
+
+
+
 
 const port=process.env.PORT||3000;
 app.listen(port,function(){
