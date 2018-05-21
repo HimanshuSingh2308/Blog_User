@@ -10,9 +10,8 @@
  		<div class="discription">
  			<p> <%- blog.body %> </p>
  		</div>
- 		 <!-- <a  href="/blog/<%=blog._id%>/edit" class="ui orange large inverted button">Edit</a> -->
 		<form class="ui form" method="post" action="/blog/<%=blog._id%>?_method=PUT">
-			<button  <% if(blog.like) {%>
+			<button  <% if(blog.likes) {%>
 			class="ui blue large button"<%}else{%>
 				class="ui blue large inverted button"
 				<%}%>>
