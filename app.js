@@ -119,7 +119,7 @@ app.put('/blog/:id',function(req,res){
 			else
 			{
 				blogs.likes+=1;
-				blog.save(function(error,blog){
+				blogs.save(function(error,blog){
 					if (error) 
 					{
 						console.log(error);
