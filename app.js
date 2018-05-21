@@ -36,7 +36,7 @@ app.get('/',function(req,res){
 
 
 app.get('/blog',function(req,res){
-	blog.find({},function(error,blogs){
+	blog.find({}).sort([['date', -1]]).exec(function(error,blogs){
 		if(error)
 		{	
 			console.log(error);
