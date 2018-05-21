@@ -5,14 +5,14 @@ var express       =require('express');
 	expressSanitiz=require('express-sanitizer');
     app           =express();
     str=require('format-title'),
-    comment=require('./models/comments')
+    comment=require('./models/comments');
 app.set('view engine','ejs');
 app.use(body.urlencoded({extended:true}));
 app.use(expressSanitiz());
 app.use(express.static('files'));
 app.use(methodOverride("_method"));
-db.connect("mongodb://localhost/Blog");// local database
-// db.connect("mongodb://username:password@ds159033.mlab.com:59033/blogs");//using mlabs database
+ db.connect("mongodb://localhost/Blog");// local database
+//db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs");//using mlabs database
 
 var blogSchema=new db.Schema({
 	title:String,
@@ -119,9 +119,8 @@ app.put('/blog/:id',function(req,res){
 			}
 			else
 			{
-				blogs.like=!blogs.like;
 				blogs.likes+=1;
-				blog.findByIdAndUpdate(id,blogs,function(error,blog){
+				blog.save(function(error,blog){
 					if (error) 
 					{
 						console.log(error);
@@ -133,22 +132,6 @@ app.put('/blog/:id',function(req,res){
 			}
 		});
 });
-
-
-// app.delete('/blog/:id',function(req,res){
-// 	var id=req.params.id;
-// 	blog.findByIdAndRemove(id,function(error,blog){
-// 			if (error) 
-// 			{
-// 				console.log(error);
-// 			}
-// 			else
-// 			{
-// 				console.log(req.body.blog);
-// 				res.redirect('/');
-// 			}
-// 		});
-// });
 
 app.post('/blog/:id/comments',function(req,res){
 	var id=req.params.id;
@@ -194,4 +177,4 @@ app.post('/blog/:id/comments',function(req,res){
 const port=process.env.PORT||3000;
 app.listen(port,function(){
 	console.log('Server Started!!');
-});;
+});
