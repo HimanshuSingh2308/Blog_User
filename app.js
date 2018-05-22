@@ -4,16 +4,19 @@ var express       =require('express'),
 	db            =require('mongoose'),
 	methodOverride=require('method-override'),
 	expressSanitiz=require('express-sanitizer'),
-    app           =express(),
-    str=require('format-title'),
-    comment=require('./models/comments');
+	app           =express(),
+	path		  =require('path'),
+	str			  =require('format-title'),
+	favicon		  =require('serve-favicon'),
+    comment		  =require('./models/comments');
 app.set('view engine','ejs');
 app.use(body.urlencoded({extended:true}));
 app.use(expressSanitiz());
+app.use(favicon(path.join(__dirname,'files','blog.ico')));
 app.use(express.static('files'));
 app.use(methodOverride("_method"));
- db.connect("mongodb://localhost/Blog");// local database
-
+// db.connect("mongodb://localhost/Blog");// local database
+db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs");//using mlabs database
 var blogSchema=new db.Schema({
 	title:String,
 	Image:String,
