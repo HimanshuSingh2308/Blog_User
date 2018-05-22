@@ -9,15 +9,14 @@
 	<h1 class="ui title" style="text-align:center;">About Me</h1>
 	<div class="ui divided items">
 		<div class="item">
-			<div class="ui rounded image"><!-- https://image.ibb.co/h0TtpF/IMG_20170907_125404286.jpg -->
-				<img src="https://i.imgur.com/3yJmmI4.jpg"
-				style="height:400px;width:250px;">
+			<div class="ui rounded image">
+				<img src="<%=repos[0].owner.avatar_url%>"
+				style="height:300px;width:300px;">
 			</div>
 			<div class="content">
-				<h4 class="discription">I am pursuing B.tech in Computer Science from Lovely Professional University.
-					I am keen to learn new stuff and increment my frontier of knowledge to new levels .
-					I just like to work hard for something that I want to achieve.
-					I love to code and i am very much active in contests on online platrforms such as-Codeforces,Codechef..etc;
+				<h4 class="discription">A CS Grad who's keen to learn and explore the frontiers of my knowledge to next level.
+					A Competitive Coder at heart and Full Stack Web Developer by passion.
+					
 				</h4>
 			</div>
 		</div>
@@ -34,19 +33,15 @@
 		<h1>My Projects</h1>
 	</div>
 <div class="ui relaxed divided list">
-  <div class="item">
-    <i class="large github middle aligned icon"></i>
-    <div class="content">
-      <a class="header" href="https://github.com/devil202/Blog-site" target="_blank">Blog_site</a>
-    </div>
-  </div>
-  <div class="item">
-    <i class="large github middle aligned icon"></i>
-    <div class="content">
-      <a class="header" href="https://github.com/devil202/Blog_User" target="
-      _blank">Updated Blog for Users</a>
-    </div>
-  </div>
+	<% repos.forEach((repo)=>{%>
+		<div class="item">
+			<i class="large github middle aligned icon"></i>
+			<div class="content">
+				<a class="header" href="<%=repo.html_url%>" target="_blank" style="font-weight:bolder;" ><%=repo.name%></a>
+				<p class="date" ><%= moment(repo.created_at).format('Do MMMM, YYYY') %></p>
+			</div>
+  	</div>
+	<%})%>
 </div>
 </div>
 

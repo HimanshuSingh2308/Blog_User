@@ -1,9 +1,10 @@
-var express       =require('express');
-	body          =require('body-parser');
-	db            =require('mongoose');
-	methodOverride=require('method-override');
-	expressSanitiz=require('express-sanitizer');
-    app           =express();
+var express       =require('express'),
+	body          =require('body-parser'),
+	request		  =require('request'),
+	db            =require('mongoose'),
+	methodOverride=require('method-override'),
+	expressSanitiz=require('express-sanitizer'),
+    app           =express(),
     str=require('format-title'),
     comment=require('./models/comments');
 app.set('view engine','ejs');
@@ -11,8 +12,8 @@ app.use(body.urlencoded({extended:true}));
 app.use(expressSanitiz());
 app.use(express.static('files'));
 app.use(methodOverride("_method"));
-//  db.connect("mongodb://localhost/Blog");// local database
-db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs");//using mlabs database
+ db.connect("mongodb://localhost/Blog");// local database
+// db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs");//using mlabs database
 
 var blogSchema=new db.Schema({
 	title:String,
@@ -26,6 +27,7 @@ var blogSchema=new db.Schema({
 	likes:{type:Number,default:0},
 	date:{type:Date,default:Date.now}
 });
+
 
 var blog=db.model('blog',blogSchema);
 
@@ -50,7 +52,20 @@ app.get('/blog',function(req,res){
 
 
 app.get('/blog/profile',function(req,res){
-	res.render('profile');
+	request({
+		url:'https://api.github.com/users/devil202/repos',
+		headers: {
+			'User-Agent': 'request'
+		}
+	},(error,response,body)=>{
+		if (!error && response.statusCode == 200){
+			res.render('profile', { repos: JSON.parse(body).sort(function (a, b) { return new Date(b.created_at) - new Date(a.created_at) }),moment:require('moment')});
+		}
+		else{
+			res.render('profile', { repos: [{ name: 'Github Profile', html_url:'https://github.com/devil202?tab=repositories'}] });
+		}
+	});
+	
 });
 
 

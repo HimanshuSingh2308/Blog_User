@@ -10,7 +10,9 @@
     "express-sanitizer": "^1.0.2",
     "format-title": "^1.1.1",
     "method-override": "^2.3.9",
-    "mongoose": "^4.11.3"
+    "moment": "^2.22.1",
+    "mongoose": "^4.11.3",
+    "request": "^2.87.0"
   },
   "devDependencies": {},
   "scripts": {
