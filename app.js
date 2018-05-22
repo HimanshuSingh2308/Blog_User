@@ -12,8 +12,7 @@ app.use(body.urlencoded({extended:true}));
 app.use(expressSanitiz());
 app.use(express.static('files'));
 app.use(methodOverride("_method"));
-//  db.connect("mongodb://localhost/Blog");// local database
-db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs");//using mlabs database
+ db.connect("mongodb://localhost/Blog");// local database
 
 var blogSchema=new db.Schema({
 	title:String,
